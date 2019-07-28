@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="147px" height="147px" viewBox="0 0 147 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>mdpi/connected</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="148" height="148"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Unlimited-Gym-Copy" transform="translate(-1134.000000, -2770.000000)">
+            <g id="Group-3-Copy-3" transform="translate(736.000000, 2476.000000)">
+                <g id="connected" transform="translate(398.000000, 294.000000)">
+                    <g id="Group" transform="translate(94.000000, 90.500000) scale(-1, 1) translate(-94.000000, -90.500000) translate(49.000000, 39.000000)">
+                        <path d="M14.3430066,90 C14.0734821,90 13.9387198,90 13.6691952,89.8685714 C12.9953838,89.4742857 12.8606215,88.6857143 13.1301461,88.0285714 L39.8130789,44 L80.1070028,57.8 C80.7808142,58.0628571 81.1851011,58.8514286 80.9155765,59.5085714 C80.6460519,60.1657143 79.8374782,60.56 79.1636668,60.2971429 L41.0259395,47.1542857 L15.4211049,89.3428571 C15.1515804,89.7371429 14.7472935,90 14.3430066,90 Z" id="Path" fill="#B6D0FF"></path>
+                        <path d="M39.3421587,46 C39.2047327,46 38.9298806,46 38.7924545,45.8654088 C38.1053243,45.5962265 37.8304722,44.7886795 38.1053243,44.1157236 L55.4210068,7.77610745 C55.6958589,7.10315159 56.5204152,6.83396925 57.2075455,7.10315159 C57.8946757,7.37233393 58.1695278,8.17988096 57.8946757,8.85283682 L40.5789932,45.192453 C40.3041411,45.7308177 39.8918629,46 39.3421587,46 Z" id="Path" fill="#B6D0FF"></path>
+                        <path d="M39.5858029,45 C39.1888353,45 38.7918677,44.7256083 38.5272226,44.3140209 L17.2232943,10.1522596 C16.8263267,9.46628042 16.9586492,8.64310545 17.6202619,8.23151796 C18.2818746,7.81993048 19.0758098,7.9571263 19.4727774,8.64310545 L40.7767057,42.8048667 C41.1736733,43.4908459 41.0413508,44.3140209 40.3797381,44.7256083 C40.115093,44.8628042 39.850448,45 39.5858029,45 Z" id="Path" fill="#B6D0FF"></path>
+                        <circle id="Oval" fill="#2168F3" cx="39.5" cy="43.5" r="16.5"></circle>
+                        <circle id="Oval" fill="#FCC600" cx="17.5" cy="11.5" r="11.5"></circle>
+                        <circle id="Oval" fill="#FF6C81" cx="57" cy="9" r="9"></circle>
+                        <circle id="Oval" fill="#FCC600" cx="79.5" cy="57.5" r="10.5"></circle>
+                        <ellipse id="Oval" fill="#FF6C81" cx="14" cy="89.5" rx="14" ry="13.5"></ellipse>
+                    </g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#FFFFFF" opacity="0.011672247" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

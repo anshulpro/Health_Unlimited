@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ekincare - Health Unlimited</title>
+        <link href="eKincare.ico" rel="icon">
+        <meta name="description" content="ekincare health unlimited">
+        <link rel="stylesheet" href="ekincare_global.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            /* Removing anchor tag default decoration */
+            a{
+                text-decoration: none;
+                color: inherit;
+            }
+            body {
+                font-family: "proxima nova",sans-serif;
+            }
+            a:hover{
+                color: #2168f3;
+            }
+            ::-webkit-scrollbar {
+                width: 0px;  /* remove scrollbar space */
+                background: transparent;  /* make scrollbar invisible */
+            }
+            input::placeholder{
+                color: grey;
+                font-size: 0.875rem;
+            }
+            .dot {
+                height: 05px;
+                width: 05px;
+                background-color: #000;
+                border-radius: 50%;
+                display: inline-block;
+                margin: 3px 10px 0px 3px;
+            }
+            ul{
+                padding: 10px 0px 0px 20px;
+                
+            }
+            ul.ul_style_1{
+                padding-left: 40px;
+            }
+        </style>
+        
+        <script>
+            //functions to show and hide the form 
+            function hide_interested_form_popup(){
+                document.getElementById("interested_form_popup").style.display = "none";
+            }
+            function show_interested_form_popup(){
+                document.getElementById("interested_form_popup").style.display = "flex";
+            }
+            
+            //function to show and hide the card content
+            function toggle_show_more(id) 
+            {   var button = id+"_button";
+                if(document.getElementById(id).style.display == 'none') 
+                {   document.getElementById(id).style.display = 'flex';
+                    document.getElementById(button).innerHTML = 'show less';
+                }
+                else 
+                {   document.getElementById(id).style.display = 'none';
+                    document.getElementById(button).innerHTML = 'show more';        
+                }
+            }
+            
+            //function for creating tabs
+            function show_tab(id)
+            {
+                //make the button the user has clicked as active
+                var tab = id + "_tab";
+                document.getElementById(id).style.display = "flex";
+                document.getElementById(tab).style.fontFamily = "ProximaNova-Semibold";
+                document.getElementById(tab).style.color = "#2168f3";
+                document.getElementById(tab).style.borderBottom = "4px solid #2168f3";
+                
+                
+                //make all other buttons as inactive
+                if(id == "gym")              
+                {       
+                    hide_tab('doc_consult'); 
+                    hide_tab('health_check');  
+                    hide_tab('dental_vision');  
+                    hide_tab('discounts');   
+                }
+                else if(id == "doc_consult")              
+                {       
+                    hide_tab('gym'); 
+                    hide_tab('health_check');  
+                    hide_tab('dental_vision');  
+                    hide_tab('discounts');   
+                }
+                else if(id == "health_check")              
+                {       
+                    hide_tab('doc_consult'); 
+                    hide_tab('gym');  
+                    hide_tab('dental_vision');  
+                    hide_tab('discounts');   
+                }
+                else if(id == "dental_vision")              
+                {       
+                    hide_tab('doc_consult'); 
+                    hide_tab('health_check');  
+                    hide_tab('gym');  
+                    hide_tab('discounts');   
+                }
+                else if(id == "discounts")              
+                {       
+                    hide_tab('doc_consult'); 
+                    hide_tab('health_check');  
+                    hide_tab('dental_vision');  
+                    hide_tab('gym');   
+                }
+            }
+            //function that make the tab to default state and hides them
+            function hide_tab(id)
+            {
+                var tab = id + "_tab";
+                document.getElementById(id).style.display = "none";
+                document.getElementById(tab).style.fontFamily = "proxima nova";
+                document.getElementById(tab).style.color = "#757575";
+                document.getElementById(tab).style.borderBottom = "0px solid #2168f3";
+                return 0;
+                
+            }
+            
+            //function to show and hide the popup for thank you
+            function show_thank_you_popup(){   document.getElementById("thank_you_popup").style.display="flex";  }
+            function hide_thank_you_popup(){   document.getElementById("thank_you_popup").style.display="none";  }
+            
+
+        </script> 
+    </head>
+
+<body style="display: block; height: 100vh; margin: 0 auto; position: relative">
+    
+    <!--Header mobile (320 to 576px(sm)) -->
+    <header class="fixed flex flex-col z-30 pin-t shadow border-t-4 border-solid border-blue sm:hidden" style="width: 100vw;">
+        <div class="flex flex-row bg-white h-16 px-4 items-center justify-between">
+            <div class="w-24">
+                <img src="Health_unlimited_logo.png" alt="health unlimited logo">
+            </div>
+            <div class="text-sm h-8 text-center text-blue px-5 py-2 font-normal rounded-full cursor-pointer  border border-solid border-blue bg-white hover:shadow" onclick="show_interested_form_popup()"> Interested ? </div>
+        </div>
+    </header>
+    
+    <!--Header mobile (576px to all) -->
+    <header class="hidden sm:flex sm:flex-col self-center border-t-4 border-solid border-blue" style="width: 100vw; margin: 0 auto; ">
+        <div class="flex flex-row bg-white h-16 px-4 items-center justify-between" style="width: 100vw; max-width: 1200px; margin: 0 auto;">
+            <div class="w-32">
+                <img src="https://dhqfzvce2gbm4.cloudfront.net/assets/ekincare_logo-d0586fe6ca40d773d238d0b94c2d5814452b7d3ede6c2fb82789036553b7e06e.png" alt="ekincare logo">
+            </div>
+            <div class="w-24 ml-auto">
+                <img src="Health_unlimited_logo.png" alt="health unlimited logo">
+            </div>
+        </div>
+    </header>
+    
+    <!--PAGE ALPHA (320 to 576px) -->
+    <section class="sm:hidden mt-32 px-6">
+        <div class="flex flex-col py-2 mx-auto">
+            <div class="text-5xl font-extrabold text-black">Health<br>Unlimited</div>
+            <div class="flex flex-col flex-no-shrink flex-no-grow max-w-xs">
+                <div class="font-semibold text-black text-lg">for startups and SMBs</div>
+                <div class="text-sm font-normal text-grey-darkest mt-4 mb-6 leading-normal">
+                    Annual subscription program that provide unlimited accesss to employee health and wellness
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--PAGE ALPHA (576px to all)-->
+    <section class="hidden sm:flex relative flex-row mt-16 mx-auto" style="max-width: 1200px; width: 100vw;">
+        <div class="flex flex-col sm:p-4 md:p-8 md:mr-auto z-20 md:w-1/2 self-center">
+            <div class="text-5xl font-extrabold text-black">Health<br>Unlimited</div>
+            <div class="flex flex-col flex-no-shrink flex-no-grow max-w-xs">
+                <div class="font-semibold text-lg text-black">for startups and SMBs</div>
+                <div class="text-xl font-normal text-grey-darkest pt-6 pb-6 leading-normal" style="max-width: 300px; min-width: 170px">
+                    Annual subscription program that provide unlimited accesss to employee health and wellness
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:pr-4 md:p-4 ml-auto md:w-1/2 self-center">
+            <div class="pin-r p-6 bg-white flex-no-shrink flex-no-grow text-grey-darkest rounded shadow-md z-10" style="max-width: 420px; min-width: 335px">
+                    <div class="text-xl">Interested in<span class="font-extrabold">&nbsp;Health Unlimited ?</span></div>
+                    <div class="flex flex-col py-2 flex-no-shrink mt-4">
+                        <label class="font-semibold text-sm my-2">Name</label>
+                        <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your full name">
+                    </div>
+                    <div class="flex flex-col py-2 flex-no-shrink">
+                        <label class="font-semibold text-sm my-2">Email</label>
+                        <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your email ID">
+                    </div>
+                    <div class="flex flex-col py-2 flex-no-shrink">
+                        <label class="font-semibold text-sm my-2">Phone no.</label>
+                        <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your phone number">
+                    </div>
+                    <div class="flex flex-col py-2 flex-no-shrink">
+                        <label class="font-semibold text-sm my-2">Company</label>
+                        <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your company name">
+                    </div>
+                    <div class="flex flex-col py-2 flex-no-shrink">
+                        <label class="font-semibold text-sm my-2">No. of employees</label>
+                        <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter total no. of employees">
+                    </div>
+                    <div class="text-sm w-24 h-8 mt-6 text-center text-white px-4 py-2 font-semibold rounded-full cursor-pointer bg-blue hover:shadow"> Submit </div>
+            </div>
+            <div class="hidden md:flex absolute pin-r mr-16">
+                <div style="width: 635px;"><img src="alpha_page_illustration.svg"></div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!--What an employee gets (320 to all) -->
+    <section class="mt-32">
+        <!--header (320 to 576px-->
+        <div class="sm:hidden px-6 mb-4">
+            <div class="font-extrabold text-xl text-black">What an employee gets ?</div>
+            <div class="font-normal mt-1 text-sm text-black">Once subscribed each employee can avail these benefits</div>
+        </div>
+        <!--header (576px to all-->
+        <div class="hidden sm:flex mt-16 flex-col items-center">
+            <div class="font-extrabold text-4xl text-black text-center">What an employee gets ?</div>
+            <div class="font-normal text-lg text-black text-center mt-1 mb-6">Once subscribed each employee can avail these benefits </div>
+        </div>
+        
+        <!--scroll deck horizontal (320 to 768px)-->
+        <div class="md:hidden mx-2 py-2 overflow-x-auto flex flex-row">
+            
+            <div class="rounded-lg shadow-md flex-no-shrink mx-2" style="background-color: #FAFBFD; width: 250px">
+                <img src="svg/gym.svg">
+                <div class="font-extrabold text-grey-darkest text-lg px-3">Unlimited gym</div>
+<!--                <div class="font-normal text-sm text-grey-darker px-3 py-3">Health Unlimited offers an employee access to multiple gyms across the city as many times as they want.<br><br>There are no limitations on the number or type of sessions, as long as they are scheduled through the ekincare app.</div>-->
+                <div class="font-normal text-sm text-grey-darker px-3 py-3">With Health Unlimited,<ul><li>An employee can have gym, zumba, yoga, cross-fit etc sessions any no. of times across the city</li><li>Partner network includes Pulse8, F45, House of Champions etc.</li></ul><br> There are no limitations on the number or type of sessions, as long as they are scheduled through the ekincare app</div>
+            </div>
+            
+            <div class="rounded-lg shadow-md flex-no-shrink mx-2" style="background-color: #FAFBFD; width: 250px">
+                <img src="svg/doctor_consult.svg">
+                <div class="font-extrabold text-grey-darkest text-lg px-3">Unlimited Doctor Consult</div>
+<!--                <div class="font-normal text-sm text-grey-darker px-3 py-3">Health Unlimited allows employees to chat with MBBS doctor online anytime, anywhere 24x7.<br><br> There is no restriction on the number or duration of time for each consult. All consults are private and secure. Employees can access the consult summary anytime on the ekincare app.</div>-->
+                <div class="font-normal text-sm text-grey-darker px-3 py-3">With Health Unlimited,<ul><li>Employee gets access to MBBS doctors online anytime, anywhere 24x7</li><li>Unlimited access to consultations, duration & consultation summary</li></ul></div>
+            </div>
+            
+            <div class="rounded-lg shadow-md flex-no-shrink mx-2" style="background-color: #FAFBFD; width: 250px">
+                <img src="svg/health_check.svg">
+                <div class="font-extrabold text-grey-darkest text-lg px-3">Unlimited Health Check</div>
+<!--                <div class="font-normal text-sm text-grey-darker px-3 py-3">Health Unlimited includes basic test covering Random Blood Sugar / Fasting Blood Sugar, Total cholesterol, Thyroid stimulating hormone and Blood Pressure etc.<br><br>An employee can get these tests as many times as he/she wants through ekincare. Any additional tests can also be scheduled at a minimum discount of 15%!</div>-->
+                <div class="font-normal text-sm text-grey-darker px-3 py-3">With Health Unlimited,<ul><li>Employee can do basic tests covering blood sugar, cholesterol, thyroid stimulating hormone etc. unlimited no of times</li><li>Avail additional tests at min. discounts of 15% or more</li></ul></div>
+            </div>
+            
+            <div class="rounded-lg shadow-md flex-no-shrink mx-2" style="background-color: #FAFBFD; width: 250px">
+                <img src="svg/dental_vision.svg">
+                <div class="font-extrabold text-grey-darkest text-lg px-3">Unlimited Dental & Vision</div>
+<!--                <div class="font-normal text-sm text-grey-darker px-3 py-3">With Health Unlimited, an employee gets unlimited free consultations for both dental and vision at ekincare's partner network.<br><br> Additionally, they can avail a minimum 15% discount on other services like dental procedures, prescription eye wear etc.</div>-->
+                <div class="font-normal text-sm text-grey-darker px-3 py-3">With Health Unlimited,<ul><li>Employee gets free consultations on both Dental & Vision health</li><li>Avail additional services like dental procedures, prescription eye wear etc. at discounts</li></ul></div>
+            </div>
+            
+            <div class="rounded-lg shadow-md flex-no-shrink mx-2" style="background-color: #FAFBFD; width: 250px">
+                <img src="svg/discounts.svg">
+                <div class="font-extrabold text-grey-darkest text-lg px-3">Unlimited Discounts</div>
+<!--                <div class="font-normal text-sm text-grey-darker px-3 py-3">Beyond gyms, doctors, health checks and other services, ekincare provides a Flat 15% discounts on variety of services that are available on the app.</div>-->
+                <div class="font-normal text-sm text-grey-darker px-3 py-3">With Health Unlimited,<ul><li>Employee can avail min. 15% discount on other services on the app</li><li>Avail personalised health coach programs like pregnancy care, diabetes management etc at discounts</li></ul></div>
+            </div>
+        </div>
+        
+        <!--tabbed section (768px to all)-->
+        
+        <!--resposnsive tab (768px to all)-->
+        <div class="hidden md:flex flex-row justify-center mx-auto mt-12 z-10 leading-tight" style="max-width: 1200px; width: 100vw;">
+            <div id="gym_tab" onclick="show_tab('gym')" class="w-1/5 font-semibold text-xl text-blue text-center border-b-4 border-solid border-blue pb-3 cursor-pointer">Unlimited<br>Gym</div>
+            <div id="doc_consult_tab" onclick="show_tab('doc_consult')" class="w-1/5 font-normal text-xl text-grey-light text-center pb-3 cursor-pointer">Unlimited<br>Doctor Consult</div>
+            <div id="health_check_tab" onclick="show_tab('health_check')" class="w-1/5 font-normal text-xl text-grey-light text-center pb-3 cursor-pointer">Unlimited<br>Health Check</div>
+            <div id="dental_vision_tab" onclick="show_tab('dental_vision')" class="w-1/5 font-normal text-xl text-grey-light text-center pb-3 cursor-pointer">Unlimited<br>Dental & Vision</div>
+            <div id="discounts_tab" onclick="show_tab('discounts')" class="w-1/5 font-normal text-xl text-grey-light text-center pb-3 cursor-pointer">Unlimited<br>Discounts</div>
+        </div>
+       
+        <div class="relative hidden md:flex">
+            <!--background-blue-strip-->
+            <div  class="absolute pin-b w-full hidden lg:flex" style="height: 94px; background-color: #F4F8FF"></div>
+            
+            <!--unlimited gym-->
+            <div id="gym" class="absolute flex flex-row  pin-x mx-auto" style="max-width: 1200px; display: flex;">
+                <div class="w-1/2 z-10"><img src="svg/gym.svg"></div>
+<!--                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">Being active everyday is the key to both mental and physical health.<br><br>Health Unlimited offers an employee access to multiple gyms across the city as many times as they want. They can attend Zumba session at F1-Fitness today and go to the cross-fit gym at Pulse tomorrow. There are no limitations on the number or type of sessions, as long as they are scheduled through the ekincare app. </div>-->
+                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">With Health Unlimited,<ul><li>An employee can have gym, zumba, yoga, cross-fit etc sessions any no. of times across the city</li><li>Partner network includes Pulse8, F45, House of Champions etc.</li></ul><br> There are no limitations on the number or type of sessions, as long as they are scheduled through the ekincare app</div>
+            </div>
+            
+            <!--unlimited doctor consult-->
+            <div id="doc_consult" class="absolute flex flex-row pin-x mx-auto" style="max-width: 1200px; display: none;">
+                <div class="w-1/2 z-10"><img src="svg/doctor_consult.svg"></div>
+<!--                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">Feeling unwell could be a simple sign of a serious illness. Access to a qualified doctor within 45 seconds is way better than a google search! <br><br> Health Unlimited allows employees to chat with MBBS doctor online anytime, anywhere 24x7. There is no restriction on the number or duration of time for each consult. All consults are private and secure. Employees can access the consult summary anytime on the ekincare app. </div>-->
+                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">With Health Unlimited,<ul><li>Employee gets access to MBBS doctors online anytime, anywhere 24x7</li><li>Unlimited access to consultations, duration & consultation summary</li></ul></div>
+            </div>
+            
+            <!--unlimited health check-->
+            <div id="health_check" class="absolute flex flex-row pin-x mx-auto" style="max-width: 1200px; display: none;">
+                <div class="w-1/2 z-10"><img src="svg/health_check.svg"></div>
+<!--                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">Timely and regular Health checks are the best way to identify and minimize the risk of diseases thus improving quality of life, productivity of a employee and lifespan.<br><br>Health Unlimited includes basic test covering Random Blood Sugar / Fasting Blood Sugar, Total cholesterol, Thyroid stimulating hormone and Blood Pressure etc. An employee can get these tests as many times as he/she wants through ekincare. <br> <br> Any additional tests can also be scheduled at a minimum discount of 15%! </div>-->
+                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">With Health Unlimited,<ul><li>Employee can do basic tests covering blood sugar, cholesterol, thyroid stimulating hormone etc. unlimited no of times</li><li>Avail additional tests at min. discounts of 15% or more</li></ul></div>
+            </div>
+            
+            <!--unlimited health & vision-->
+            <div id="dental_vision" class="absolute flex flex-row pin-x mx-auto" style="max-width: 1200px; display: none">
+                <div class="w-1/2 z-10"><img src="svg/dental_vision.svg"></div>
+<!--                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">Vision and dental health are usually ignored by Indians, until it is quite late.  A timely treatment keeps these problems in check.<br><br> With Health Unlimited, an employee gets unlimited free consultations for both dental and vision at ekincare's partner network. <br><br>Additionally, they can avail a minimum 15% discount on other services like dental procedures, prescription eye wear etc. </div>-->
+                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">With Health Unlimited,<ul><li>Employee gets free consultations on both Dental & Vision health</li><li>Avail additional services like dental procedures, prescription eye wear etc. at discounts</li></ul></div>
+            </div>
+            
+            <!--unlimited discounts-->
+            <div id="discounts" class="absolute flex flex-row pin-x mx-auto" style="max-width: 1200px; display: none">
+                <div class="w-1/2 z-10"><img src="svg/discounts.svg"></div>
+<!--                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">Beyond gyms, doctors, health checks and other services, ekincare provides a Flat 15% discounts on variety of services that are available on the app.<br><br>Now, employees can get medicines delivered to their home by just uploading a prescription on the app.<br><br>Health Coach programs, a personalized program with access to nutritionists, psychologists and specialist doctors, are also available on the ekincare app. These programs also cover smoking cessation, pregnancy care and other disease management programs.</div>-->
+                <div class="w-1/2 self-center text-black text-lg mx-20 leading-tight" style="max-width: 421px">With Health Unlimited,<ul><li>Employee can avail min. 15% discount on other services on the app</li><li>Avail personalised health coach programs like pregnancy care, diabetes management etc at discounts</li></ul></div>
+            </div>
+            
+            <!--background-blue-->
+            <div class="w-full border-t border-solid border-grey-lightest" style="height: 498px; background-color: #FAFBFD"></div>
+        </div>
+    </section>
+    
+    <!--why health unlimited (320 to all)-->   
+    <section class="mt-32">
+        <!-- header (320 to 576px)-->
+        <div class="sm:hidden -mt-16 px-6 mb-4">
+            <div class="font-extrabold text-xl text-black">Why health unlimited  ?</div>
+            <div class="font-normal mt-1 text-sm text-black">The benefits make not only the employee happy but also the company.</div>
+        </div>
+        
+        <!-- header (576px to all)-->
+        <div class="hidden sm:flex mt-16 flex-col items-center">
+            <div class="font-extrabold text-4xl text-black text-center">Why Health Unlimited ?</div>
+            <div class="font-normal text-lg text-black text-center mt-1 mb-6">The benefits make not only the employee happy but also the company.</div>
+        </div>
+        
+        <!--benefits cards (320 to 576px)-->
+        <div class="sm:hidden mx-2 flex flex-col">
+            <div class="relative rounded-lg shadow-md flex-no-shrink mx-2 my-2" style="background-color: #F5F5FD;">
+                <img class="absolute w-16 pin-r pin-t" src="svg/lamp.svg">
+                <div class="font-extrabold text-grey-darkest text-lg p-4">OPD Health Benefits</div>
+<!--                <div id="opd_health" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none">Traditional insurance covers only the in-patient (IPD) and hospitalization costs and does not provide respite from the out-patient (OPD) costs.<br><br> Health Unlimited is uniquely designed to cater to these needs and encourage preventive health as a habit for employees. Providing free doctor consultations, basic health checks and, eye and dental care, health unlimited covers basic needs of the individual, which will help in preventing and/or postponing long-term illnesses.</div>-->
+                <div id="opd_health" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none"><ul><li>Traditional insurance covers only the in-patient (IPD) & hospitalization costs</li><li>Health Unlimited provides free doctor consultations, basic health checks, eye and dental care etc.</li><li>Covers basic health needs of an individual</li></ul></div>
+                <div class="flex flex-row justify-start items-center px-4 pb-3 cursor-pointer" onclick="toggle_show_more('opd_health')">
+                    <div id="opd_health_button" class="font-normal text-blue-light text-xs self-center">show more</div>
+                    <!--<div class="w-3 mx-1 -mt-1 self-center"><img src="svg/chevron-down.svg"></div>-->
+                </div>
+            </div>
+            <div class="relative rounded-lg shadow-md flex-no-shrink mx-2 my-2" style="background-color: #FDF8F1;">
+                <img class="absolute w-16 pin-b pin-r" src="svg/flower_pot.svg">
+                <div class="font-extrabold text-grey-darkest text-lg p-4">Talent Acquisition and Retention</div>
+<!--                <div id="talent_acquisition" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none">Unlimited access to gyms, online doctors, and other health-related features are a great incentive for employees.<br><br> In a fast-paced environment of startups, providing Health Unlimited goes a long way beyond monetary incentives, to attract new talent and show that you care for your existing employees.</div>-->
+                <div id="talent_acquisition" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none"><ul><li>Employee gets unlimited gym access to gyms, online docs & other healthcare features</li><li>Helps attract new talent beyond monetary incentives</li><li>Shows employees improves productivity & loyalty</li></ul></div>
+                <div class="flex flex-row justify-start items-center px-4 pb-3">
+                    <div id="talent_acquisition_button" class="font-normal text-blue-light text-xs self-center" onclick="toggle_show_more('talent_acquisition')">show more</div>
+                    <!--<div class="w-3 mx-1 -mt-1 self-center"><img src="svg/chevron-down.svg"></div>-->
+                </div>
+            </div>   
+            <div class="relative rounded-lg shadow-md flex-no-shrink mx-2 my-2" style="background-color: #FAFBFD;">
+                <img class="absolute w-16 pin-r pin-t" src="svg/watch.svg">
+                <div class="font-extrabold text-grey-darkest text-lg p-4">AI driven real-time analytics</div>
+<!--                <div id="ai_driven" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none">Health unlimited will give you a unique view of the health stats for all your employees!<br><br>Using the vast data of corporate India using ekincare platform, AI-driven actionable insights personalize the experience on the app for an individual and the company. Understand the activity trends of your employees and predict their health risks at a population level. This data can be also used to negotiate better premium rates for group health insurance across various partners of ekincare.</div>-->
+                <div id="ai_driven" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none"><ul><li>Actionable insights to create personalized experience on app</li><li>Company level data on health risks, activity trends & clusters</li><li>Data can be used to negotiate better group insurance premiums</li></ul></div>
+                <div class="flex flex-row justify-start items-center px-4 pb-3">
+                    <div id="ai_driven_button" class="font-normal text-blue-light text-xs self-center" onclick="toggle_show_more('ai_driven')">show more</div>
+                    <!--<div class="w-3 mx-1 -mt-1 self-center"><img src="svg/chevron-down.svg"></div>-->
+                </div>
+            </div>
+            <div class="relative rounded-lg shadow-md flex-no-shrink mx-2 my-2" style="background-color: #FFF5F7;">
+                <img class="absolute w-16 pin-r pin-b" src="svg/connected.svg">
+                <div class="font-extrabold text-grey-darkest text-lg p-4">Single vendor for all health activities</div>
+<!--                <div id="single_vendor" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none">As a single vendor for all health-related activities, you do not have to worry about vendor management for multiple activities. Save time and administration costs for managing hospitals, clinics, and other institutions.<br><br> Along with the app features, you can also get stand-alone engagement activities like health talks, desk yoga, etc for your employees through ekincare.</div>-->
+                <div id="single_vendor" class="font-normal text-xs text-grey-darker px-4 pb-4" style="display: none"><ul><li>A single vendor for all health-related activities</li><li>Save time & costs on managing hospitals, clinics, multiple vendors etc</li><li>Along with app get help for engagement activities like health talks, desk yoga etc for employees</li></ul></div>
+                <div class="flex flex-row justify-start items-center px-4 pb-3">
+                    <div id="single_vendor_button" class="font-normal text-blue-light text-xs self-center" onclick="toggle_show_more('single_vendor')">show more</div>
+                    <!--<div class="w-3 mx-1 -mt-1 self-center"><img src="svg/chevron-down.svg"></div>-->
+                </div>
+            </div>
+        </div>
+        
+        <!--benefits cards (576px to all)-->
+        <div class="hidden sm:flex flex-row px-4 mt-6 flex-wrap w-full mx-auto" style="max-width: 1200px;">
+            <div class="relative rounded-lg shadow-md my-6 mx-auto" style="background-color: #F5F5FD; max-width: 545px">
+                <img class="absolute w-24 pin-r pin-t" src="svg/lamp.svg">
+                <div class="font-extrabold text-grey-darkest text-3xl p-8">OPD Health Benefits</div>
+                <div id="opd_health" class="font-normal text-lg text-grey-darker px-8 pb-8"><ul><li>Traditional insurance covers only the in-patient (IPD) & hospitalization costs</li><li>Health Unlimited provides free doctor consultations, basic health checks, eye and dental care etc.</li><li>Covers basic health needs of an individual</li></ul></div>
+            </div>
+            <div class="relative rounded-lg shadow-md  my-6 mx-auto" style="background-color: #FDF8F1; max-width: 545px">
+                <img class="absolute w-24 pin-b pin-r" src="svg/flower_pot.svg">
+                <div class="font-extrabold text-grey-darkest text-3xl p-8">Talent Acquisition and Retention</div>
+                <div id="opd_health" class="font-normal text-lg text-grey-darker px-8 pb-8"><ul><li>Employee gets unlimited gym access to gyms, online docs & other healthcare features</li><li>Helps attract new talent beyond monetary incentives</li><li>Shows employees improves productivity & loyalty</li></ul></div>
+            </div>
+            <div class="relative rounded-lg shadow-md  my-6 mx-auto" style="background-color: #FAFBFD; max-width: 545px">
+                <img class="absolute w-24 pin-r pin-t" src="svg/watch.svg">
+                <div class="font-extrabold text-grey-darkest text-3xl p-8">AI driven real-time analytics</div>
+                <div id="opd_health" class="font-normal text-lg text-grey-darker px-8 pb-8"><ul><li>Actionable insights to create personalized experience on app</li><li>Company level data on health risks, activity trends & clusters</li><li>Data can be used to negotiate better group insurance premiums</li></ul></div>
+            </div>
+            <div class="relative rounded-lg shadow-md  my-6 mx-auto" style="background-color: #FFF5F7; max-width: 545px">
+                <img class="absolute w-24 pin-r pin-b" src="svg/connected.svg">
+                <div class="font-extrabold text-grey-darkest text-3xl p-8">Single vendor for all health activities</div>
+                <div id="opd_health" class="font-normal text-lg text-grey-darker px-8 pb-8"><ul><li>A single vendor for all health-related activities</li><li>Save time & costs on managing hospitals, clinics, multiple vendors etc</li><li>Along with app get help for engagement activities like health talks, desk yoga etc for employees</li></ul></div>
+            </div> 
+        </div>
+    </section> 
+    
+    <!--how health unlimited works (320 to 576pxx)-->
+    <section class="sm:hidden mt-16 relative">
+        <div class="px-6 mb-4">
+            <div class="font-extrabold text-xl text-black">How health unlimited works?</div>
+            <div class="font-normal mt-1 text-sm text-black">We connect all the essential partners to create a unified and hasle free experience for an employee</div>
+        </div>
+        <ul class="ul_style_1 font-extrabold text-md text-grey-darkest py-6">
+            <li class="py-2">Diagnostic Center Network</li>
+            <li class="py-2">e-Pharmacy Partners</li>
+            <li class="py-2">In-house Doctors</li>
+            <li class="py-2">Gym Network</li>
+            <li class="py-2">Dental & Vision Partners</li>
+        </ul>
+        <img class="absolute pin-r pin-t" src="svg/girl_with_mobile.svg" style="z-index: -10">
+    </section>
+    
+    <!--how health unlimited works (567px to all)-->
+    <section>
+        <!-- header (576px to all)-->
+        <div class="hidden sm:flex mt-32 flex-col items-center">
+            <div class="font-extrabold text-4xl text-black text-center">How health unlimited works?</div>
+            <div class="font-normal text-lg text-black text-center mt-1 mb-6">We connect all the essential partners to create a unified and hasle free experience for an employee</div>
+        </div>
+        <div class="relative hidden sm:flex mt-12 mb-12 flex-col pl-12 mx-auto" style="max-width: 1200px;">
+            <div class="py-2 md:py-4">   
+                <div class="font-extrabold text-xl text-grey-darkest">Diagnostic Center Network</div>
+                <div class="font-normal text-base text-grey my-1">500+ NABL certified centers covering 100+ cities</div>  
+            </div>
+            <div class="py-2 md:py-4">   
+                <div class="font-extrabold text-xl text-grey-darkest">Insurance Brokers</div>
+                <div class="font-normal text-base text-grey my-1">7 out of 10 Insurance broking form work with us</div>  
+            </div>
+            <div class="py-2 md:py-4">   
+                <div class="font-extrabold text-xl text-grey-darkest">In-house Doctors</div>
+                <div class="font-normal text-base text-grey my-1">30 sec is the waiting period connecting to a doctor</div>  
+            </div>
+            <div class="py-2 md:py-4">   
+                <div class="font-extrabold text-xl text-grey-darkest">Gym Network</div>
+                <div class="font-normal text-base text-grey my-1">3,000+ gyms across tier-I cities </div>  
+            </div>
+            <div class="py-2 md:py-4">   
+                <div class="font-extrabold text-xl text-grey-darkest">e-Pharmacy Partners</div>
+                <div class="font-normal text-base text-grey my-1">22,000+ pin-codes covered across the country</div>  
+            </div>
+            <div class="py-2 md:py-4">   
+                <div class="font-extrabold text-xl text-grey-darkest">Dental & Vision Partners</div>
+                <div class="font-normal text-base text-grey my-1">500+ partners across the country</div>  
+            </div>
+            <img class="absolute pin-r pin-t md:hidden" src="svg/girl_with_mobile.svg" style="z-index: -10">
+            <img class="hidden md:flex opacity-75 absolute pin-r pin-t" src="svg/girl_with_mobile_2.svg" style="z-index: -10; max-height: 564px"> 
+        </div>
+    </section>
+    
+    <!--Trusted by (320px to all)-->    <!--code copied form the website-- -->
+    <section class="flex flex-col mt-32 mb-24 justify-center flex-no-shrink flex-no-grow">
+        <div class="text-black font-proxima-semibold font-normal text-2xl self-center mt-16 mb-4 text-center">Trusted by Fortune 500 companies</div>
+        <div class="flex flex-row flex-wrap self-center justify-around mx-4 opacity-50" style="">
+            <div class="w-32 self-center mx-4 my-2">
+                <img src="https://dhqfzvce2gbm4.cloudfront.net/assets/home_landing/optum-da08f1303784f06164c9c4f52aada0439c3a4d910f2372e32f1b5559fc502f43.png" alt="Optum">
+            </div>
+            <div class="w-32 self-center mx-2 my-2">
+                <img src="https://dhqfzvce2gbm4.cloudfront.net/assets/home_landing/barclays-de8854cb2f62e0986c5db7e8f138f2ba1c0d8aa9ef86674c5b7f8ad25fe73e86.png" alt="Barclays">
+            </div>
+            <div class="w-32 self-center mx-4 my-2">
+                <img src="https://dhqfzvce2gbm4.cloudfront.net/assets/home_landing/kotak-dd4cf39bbcf1c23519700f805194a2f0c9268a8c3a3c07c8b6cde59662172cc5.png" alt="Kotak">
+            </div>
+            <div class="w-32 self-center mx-2 my-2">
+                <img src="https://dhqfzvce2gbm4.cloudfront.net/assets/home_landing/open-text-757bb008e8f385ec0b83bd63db12bd6f18da301291b02ad6d3759d94570d07e1.png" alt="Open text">
+            </div>
+            <div class="w-12 self-center mx-4 my-2">
+                <img src="https://dhqfzvce2gbm4.cloudfront.net/assets/home_landing/unilever-f69aae882cf67020263279518be2dda56c5512ee37bd001bc820c509c6a2f2e0.png" alt="Unilever">
+            </div>
+        </div>
+    </section>
+
+    <!--Awards (Same tab as the website)-->
+
+    <!--Testimonials (320px to all)-->  <!--code form the website-- -->
+
+    <!--Book a demo (Same tab as the GPTW landing page)-->
+    
+    <!--footer (if needed)-->
+    
+    <!--interested form popup (320px to 576px)--->
+    <section id="interested_form_popup" class="fixed pin-t sm:hidden flex w-screen flex-col z-50 border-t-4 border-solid border-blue" style="display: none">
+        <div class="p-6 bg-white flex-no-shrink text-grey-darkest h-screen overflow-y-auto" style="min-width: 320px;">
+            <div class="flex flex-row">
+                <div class="text-xl">Interested in<span class="font-extrabold">&nbsp;Health Unlimited ?</span></div>
+                <div class="ml-auto" onclick="hide_interested_form_popup()"><img src="icons_svg/close.svg"></div>
+            </div>
+            <div class="flex flex-col py-2 flex-no-shrink mt-4">
+                <label class="font-semibold text-sm my-2">Name</label>
+                <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your full name">
+            </div>
+            <div class="flex flex-col py-2 flex-no-shrink">
+                <label class="font-semibold text-sm my-2">Email</label>
+                <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your email ID">
+            </div>
+            <div class="flex flex-col py-2 flex-no-shrink">
+                <label class="font-semibold text-sm my-2">Phone no.</label>
+                <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your phone number">
+            </div>
+            <div class="flex flex-col py-2 flex-no-shrink">
+                <label class="font-semibold text-sm my-2">Company</label>
+                <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter your company name">
+            </div>
+            <div class="flex flex-col py-2 flex-no-shrink">
+                <label class="font-semibold text-sm my-2">No. of employees</label>
+                <input class="h-8 px-2 rounded border border-solid border-grey-lighter" type="text" width="inherit" height="4rem" placeholder="Enter total no. of employees">
+            </div>
+            <div class="text-sm w-24 h-8 mt-6 text-center text-white px-4 py-2 font-semibold rounded-full cursor-pointer bg-blue hover:shadow"> Submit </div>
+        </div>    
+    </section>
+    
+    <!--Thank you popup(320px to all) -->
+    <section id="thank_you_popup" class="flex-no-shrink" style="display:none">
+        <!--overlay for the popup-->
+        <div id="overlay" onclick ="show_thank_you_popup()" style="position:fixed; display:block; width:100%; height:100%; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0,0.5); z-index: 100000000; cursor: pointer">
+        </div>
+        
+        <!--Thank you note(320px to all -->
+        <section class="flex-row rounded-lg flex-no-shrink overflow-y-auto flex-no-grow p-6" style="position:fixed; z-index: 999999999; top: calc(50vh - 120px); left: 10vw; right: 10vw; max-width: 400px; margin: auto auto auto auto; background-color: white;">
+        <div class="opacity-50 w-24" style="position: absolute; bottom: 0; right: 0; height: 240px;"><img src="Plant%20Right.png"></div>
+        <div class="absolute cursor-pointer w-4" onclick="hide_thank_you_popup()" style="right: 20px; top: 20px;"><img src="close.svg"></div>
+        <div class="flex flex-col justify-center flex-no-shrink z-20" style="width: 100%">
+            <div class="flex flex-col justify-between mb-2 flex-no-shrink">
+                <div class="w-24 mb-6"><img src="Health_unlimited_logo.png"></div>
+                <div class="font-extrabold text-3xl text-black mt-16">Thank You !</div>
+                <div class="text-base font-normal text-black text-left mt-2">Someone from our team will contact you soon</div>
+            </div>
+        </div>
+        </section>
+    </section>
+    
+</body>
+</html>
